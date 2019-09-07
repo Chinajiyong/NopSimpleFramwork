@@ -1,0 +1,92 @@
+@model CountryModel
+
+<div class="panel-group">
+    @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.CountryDetailsInfoTop, additionalData = Model })
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @(Html.LocalizedEditor<CountryModel, CountryLocalizedModel>("country-info-localized",
+            @<div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="@Model.Locales[item].Name"/>
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="@Model.Locales[item].Name"/>
+                        <span asp-validation-for="@Model.Locales[item].Name"></span>
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                </div>
+            </div>
+,
+            @<div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="Name"/>
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Name" asp-required="true"/>
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                </div>
+            </div>
+))
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="TwoLetterIsoCode"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="TwoLetterIsoCode" asp-required="true"/>
+                    <span asp-validation-for="TwoLetterIsoCode"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="ThreeLetterIsoCode"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ThreeLetterIsoCode" asp-required="true"/>
+                    <span asp-validation-for="ThreeLetterIsoCode"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="NumericIsoCode"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="NumericIsoCode"/>
+                    <span asp-validation-for="NumericIsoCode"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="SubjectToVat"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="SubjectToVat"/>
+                    <span asp-validation-for="SubjectToVat"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Published"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Published"/>
+                    <span asp-validation-for="Published"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="DisplayOrder"/>
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="DisplayOrder"/>
+                    <span asp-validation-for="DisplayOrder"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.CountryDetailsInfoBottom, additionalData = Model })
+</div>

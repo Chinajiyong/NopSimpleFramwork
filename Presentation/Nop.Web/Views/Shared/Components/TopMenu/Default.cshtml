@@ -1,0 +1,41 @@
+﻿@*@model TopMenuModel
+
+@if (Model == null) { return; }
+
+<ul class="top-menu">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
+    @if (Model.DisplayHomePageMenuItem)
+    {
+        <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+    }
+
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
+</ul>
+@{
+    <ul class="top-menu mobile">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MobHeaderMenuBefore })
+        @if (Model.DisplayHomePageMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+        }
+        @if (Model.DisplayUserInfoMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("UserInfo")">@T("Account.MyAccount")</a></li>
+        }
+        @if (Model.DisplayContactUsMenuItem)
+        {
+            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MobHeaderMenuAfter })
+    </ul>
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            $('.menu-toggle').on('click', function () {
+                $(this).siblings('.top-menu.mobile').slideToggle('slow');
+            });
+            $('.top-menu.mobile .sublist-toggle').on('click', function () {
+                $(this).siblings('.sublist').slideToggle('slow');
+            });
+        });
+    </script>
+}*@

@@ -1,0 +1,35 @@
+﻿@model DashboardModel
+@inject IPermissionService permissionService
+@using Nop.Services.Security
+@{
+    Html.AppendCssFileParts("~/lib/ionicons/css/ionicons-2.0.1.min.css");
+
+    //page title
+    ViewBag.Title = T("Admin.Dashboard").Text;
+}
+<nop-antiforgery-token />
+<div class="content-header">
+    <h1>
+        @T("Admin.Dashboard")
+    </h1>
+</div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardTop })
+            <div class="row">
+                <div class="col-md-12">
+                    @await Component.InvokeAsync("CommonStatistics")
+                </div>
+            </div>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardCommonstatisticsAfter })
+            <div class="col-md-6">
+                @await Html.PartialAsync("_UserStatistics")
+            </div>
+            <div class="col-md-6">
+                @await Html.PartialAsync("_PopularSearchTermsReport", Model.PopularSearchTerms)
+            </div>
+        </div>
+        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardBottom })
+    </div>
+</div>
