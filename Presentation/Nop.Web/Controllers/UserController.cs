@@ -546,7 +546,7 @@ namespace Nop.Web.Controllers
         public virtual IActionResult Info()
         {
             if (!_workContext.CurrentUser.IsRegistered())
-                return Challenge();
+                return Redirect("/login");
 
             var model = new UserInfoModel();
             model = _userModelFactory.PrepareUserInfoModel(model, _workContext.CurrentUser, false);
@@ -726,7 +726,7 @@ namespace Nop.Web.Controllers
         public virtual IActionResult Addresses()
         {
             if (!_workContext.CurrentUser.IsRegistered())
-                return Challenge();
+                return Redirect("/login");
 
             var model = _userModelFactory.PrepareUserAddressListModel();
             return View(model);
